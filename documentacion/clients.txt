@@ -1,0 +1,146 @@
+db.clients.save({
+user_name:'daviddelasota@hotmail.com',
+user_hash:'david102415',
+system_generated_password:'0',
+pwd_last_changed:'12/10/2017',
+authenticate_id:'',
+receive_notifications:'1',
+first_name:'DAVID',
+last_name:'DE LA SOTA',
+last_sure_name:'PINEDA',
+title:'SR',
+curp:'SOPD821024HDFTNV01',
+birthdate:'24/10/1982',
+do_not_call:'0',
+phone_home:'56073620',
+phone_mobile:'0445533980748',
+phone_work:'',
+primary_address_street:'',
+primary_address_city:'México',
+primary_address_state:'CDMX',
+primary_address_postalcode:'04480',
+primary_address_country:'México',
+picture:'david.jpg',
+date_entered:'12/10/1985',
+date_modified:'12/10/1985',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+ip_modified_user_id:'125.12.14.125',
+provider_modified_user_id:'telnet',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+created_by:'51bcc8986fba2c81d4e8a1d6',
+description:'',
+deleted:'0'
+})
+
+db.languajes.save({
+user_id:'597b532ddb1b127c176fad21',
+languaje_id:'2',
+percentage:'50',
+certificate:'TOEFL',
+certificate_score: '520',
+date_entered:'12/10/1985',
+date_modified:'12/10/1985',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+ip_modified_user_id:'125.12.14.125',
+provider_modified_user_id:'telnet',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+created_by:'51bcc8986fba2c81d4e8a1d6',
+description:''
+})
+
+db.courses.save({
+user_id:'597b532ddb1b127c176fad21',
+course_id:'2',
+percentage:'50',
+certificate:'WINDOWS 98',
+certificate_score: '780',
+date_entered:'12/10/1985',
+date_modified:'12/10/1985',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+ip_modified_user_id:'125.12.14.125',
+provider_modified_user_id:'telnet',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+created_by:'51bcc8986fba2c81d4e8a1d6',
+description:''
+})
+
+db.itSkills.save({
+user_id:'597b532ddb1b127c176fad21',
+skill:'C++',
+percentage:'50',
+certificate:'WINDOWS 98',
+certificate_score: '780',
+date_entered:'12/10/1985',
+date_modified:'12/10/1985',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+ip_modified_user_id:'125.12.14.125',
+provider_modified_user_id:'telnet',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+created_by:'51bcc8986fba2c81d4e8a1d6',
+description:''
+})
+
+
+db.itSkills.save({
+user_id:'597b532ddb1b127c176fad21',
+skill:'C++',
+percentage:'50',
+certificate:'WINDOWS 98',
+certificate_score: '780',
+date_entered:'12/10/1985',
+date_modified:'12/10/1985',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+ip_modified_user_id:'125.12.14.125',
+provider_modified_user_id:'telnet',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+created_by:'51bcc8986fba2c81d4e8a1d6',
+description:''
+})
+
+db.personalObjective.save({
+user_id:'597b532ddb1b127c176fad21',
+personalObjective:'El mejor en Informatica ULSA',
+date_entered:'12/10/1985',
+date_modified:'12/10/1985',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+ip_modified_user_id:'125.12.14.125',
+provider_modified_user_id:'telnet',
+modified_user_id:'51bcc8986fba2c81d4e8a1d6',
+created_by:'51bcc8986fba2c81d4e8a1d6',
+description:''
+})
+
+
+ {
+    "_id" : ObjectId("597b532ddb1b127c176fad21"),
+    "first_name" : "DAVID",
+    "last_name" : "DE LA SOTA",
+    "last_sure_name" : "PINEDA",
+    "title" : "SR",
+    "curp" : "SOPD821024HDFTNV01",
+    "birthdate" : "24/10/1982",
+    "do_not_call" : "0",
+    "phone_home" : "56073620",
+    "phone_mobile" : "0445533980748",
+    "phone_work" : "",
+    "primary_address_street" : "",
+    "primary_address_city" : "México",
+    "primary_address_state" : "CDMX",
+    "primary_address_postalcode" : "04480",
+    "primary_address_country" : "México",
+    "picture" : "david.jpg",
+    "date_entered" : "12/10/1985",
+    "date_modified" : "12/10/1985",
+    "modified_user_id" : "51bcc8986fba2c81d4e8a1d6",
+    "ip_modified_user_id" : "125.12.14.125",
+    "provider_modified_user_id" : "telnet",
+    "created_by" : "51bcc8986fba2c81d4e8a1d6",
+    "description" : "",
+    "deleted" : "0"
+}
+db.clients.find()
+db.languajes.find()
+
+
+
+
