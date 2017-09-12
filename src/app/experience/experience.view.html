@@ -1,0 +1,104 @@
+<!-- Start: Topbar-Dropdown-->
+<div id="topbar-dropmenu" class="alt">
+   <div class="topbar-menu row">
+      <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-primary light"><span class="glyphicon glyphicon-inbox text-muted"></span><span class="metro-title">Messages</span></a></div>
+      <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-info light"><span class="glyphicon glyphicon-user text-muted"></span><span class="metro-title">Users</span></a></div>
+      <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-success light"><span class="glyphicon glyphicon-headphones text-muted"></span><span class="metro-title">Support</span></a></div>
+      <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-system light"><span class="glyphicon glyphicon-facetime-video text-muted"></span><span class="metro-title">Videos</span></a></div>
+      <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-warning light"><span class="fa fa-gears text-muted"></span><span class="metro-title">Settings</span></a></div>
+      <div class="col-xs-4 col-sm-2"><a href="#" class="metro-tile bg-alert light"><span class="glyphicon glyphicon-picture text-muted"></span><span class="metro-title">Pictures</span></a></div>
+   </div>
+</div>
+<!-- Begin: Content-->
+<section id="content" class="animated fadeIn">
+   <!-- Demo Content: Center Column Text-->
+   <div class="ph10">
+      <div class="panel panel-alert">
+         <div class="panel-heading">
+            <i class="fa fa-star"></i><span class="panel-title">Curriculum Escolar</span>
+            <div class="widget-menu pull-right"><code class="mr10 bg-alert dark p3 ph5">.panel-alert</code></div>
+         </div>
+         <div class="panel-body">
+            <div id="paper">
+               <!-- BEGIN Paper -->   
+                  <p id="prueba" name="prueba" >hola mundo</p>
+                 <button (click)="mostrarTitulo()">Mostrar titulo</button>
+ 
+               <!-- INICIA FORMA-->
+               <div class="col-md-8">
+                  <div class="panel">
+                     <div class="panel-heading"><span class="panel-icon"><i class="fa fa-pencil"></i></span><span class="panel-title">Agregar puesto/función dentro de Empresa 1</span></div>
+                     <div class="panel-body pb5">
+                        <form name="admin-form" id="admin-form">
+                           <input type='hidden'  name='clientId' id='clientId' value='2'>                   
+                           <input type='hidden' name='ip' value='201.141.104.250'>               
+                           <input type='hidden'  name='formid' id='formid' value='admin-form'>
+                           <div class="tab-content pn br-n admin-form">
+                              <div>
+                                 <div class="section mb10">
+                                    <label for="job" class="field prepend-icon">
+                                    <input id="job" type="text" name="job" placeholder="Puesto/función" class="event-name gui-input br-light light">
+                                    <label for="job" class="field-icon"><i class="fa fa-tag"></i></label>
+                                    </label>
+                                 </div>
+                                 <h5><small>Fecha</small></h5>
+                                 <div class="section row">
+                                    <div class="col-md-6">
+                                       <label for="datepicker4" class="field prepend-picker-icon">
+                                       <input id="datepicker4" type="text" name="datepicker4" placeholder="Inicio" class="gui-input">
+                                       </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                       <label for="datepicker5" class="field prepend-picker-icon">
+                                       <input id="datepicker5" type="text" name="datepicker5" placeholder="Fin" class="gui-input">
+                                       </label>
+                                    </div>
+                                    <div class="section mb10">
+                                       <label class="field prepend-icon">
+                                       <textarea id="workDescription" style="height: 160px;" name="workDescription" placeholder="Descripción de puesto o función" class="gui-textarea br-light bg-light"></textarea>
+                                       <label for="comment" class="field-icon"><i class="fa fa-comments"></i></label><span class="input-footer hidden"><strong>Hint:</strong>Don't be negative or off topic! just be awesome...</span>
+                                       </label>
+                                    </div>
+                                    <div class="section row">
+                                       <div class="col-md-6">
+                                          <button type="submit" class="button btn-primary">Agregar</button> 
+                                       </div>
+                                    </div>
+                                    <div class="form-group">
+                                       <label for="daterangepicker2" class="col-md-3 control-label">Component Field</label>
+                                       <div class="col-md-8">
+                                          <div id="daterangepicker2" class="input-group date pull-right">
+                                             <input type="text" class="form-control"><span class="input-group-addon cursor"><i class="fa fa-calendar"></i></span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <!-- TERMINA FORMA-->     
+               <!-- BEGIN Paper -->                                
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<!-- AdminForms JS-->
+<!-- Theme Javascript-->
+<script type="text/javascript">
+   $( "#div_admin-form" ).ready(function() {
+       $('#div_admin-form').addClass('animated bounce');
+   });
+       
+</script>
+<script type="text/javascript">
+   jQuery(document).ready(function () {
+     "use strict";
+   
+   });      
+</script>
+COPY TO CLIPBOARD	

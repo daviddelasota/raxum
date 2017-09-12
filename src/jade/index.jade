@@ -1,0 +1,1255 @@
+extends  _skeleton
+include _ui-sidebar
+
+block stylesheets
+	link(rel='stylesheet', type='text/css', href='plugins/css/summernote.css')
+	link(rel='stylesheet', type='text/css', href='plugins/css/fullcalendar.min.css')
+	link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.min.css')
+
+block body
+	body.dashboard-page
+		//
+			-----------------------------------------------------------+
+			<body> Helper Classes:
+			---------------------------------------------------------------+
+			'.sb-l-o' - Sets Left Sidebar to "open"
+			'.sb-l-m' - Sets Left Sidebar to "minified"
+			'.sb-l-c' - Sets Left Sidebar to "closed"
+			'.sb-r-o' - Sets Right Sidebar to "open"
+			'.sb-r-c' - Sets Right Sidebar to "closed"
+			---------------------------------------------------------------+
+			Example: <body class="example-page sb-l-o sb-r-c">
+			Results: Sidebar left Open, Sidebar right Closed
+			-------------------------------------------------------------
+		// Start: Theme Preview Pane
+		#skin-toolbox
+			.panel
+				.panel-heading
+					span.panel-icon
+						i.fa.fa-gear.text-primary
+					span.panel-title  Theme Options
+				.panel-body.pn
+					ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+						li.active
+							a(href='#toolbox-header', role='tab', data-toggle='tab') Navbar
+						li
+							a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+						li
+							a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+					.tab-content.p20.ptn.pb15
+						#toolbox-header.tab-pane.active(role='tabpanel')
+							form#toolbox-header-skin
+								h4.mv20 Header Skins
+								.skin-toolbox-swatches
+									.checkbox-custom.checkbox-disabled.fill.mb5
+										input#headerSkin8(type='radio', name='headerSkin', checked='', value='')
+										label(for='headerSkin8') Light
+									.checkbox-custom.fill.checkbox-primary.mb5
+										input#headerSkin1(type='radio', name='headerSkin', value='bg-primary')
+										label(for='headerSkin1') Primary
+									.checkbox-custom.fill.checkbox-info.mb5
+										input#headerSkin3(type='radio', name='headerSkin', value='bg-info')
+										label(for='headerSkin3') Info
+									.checkbox-custom.fill.checkbox-warning.mb5
+										input#headerSkin4(type='radio', name='headerSkin', value='bg-warning')
+										label(for='headerSkin4') Warning
+									.checkbox-custom.fill.checkbox-danger.mb5
+										input#headerSkin5(type='radio', name='headerSkin', value='bg-danger')
+										label(for='headerSkin5') Danger
+									.checkbox-custom.fill.checkbox-alert.mb5
+										input#headerSkin6(type='radio', name='headerSkin', value='bg-alert')
+										label(for='headerSkin6') Alert
+									.checkbox-custom.fill.checkbox-system.mb5
+										input#headerSkin7(type='radio', name='headerSkin', value='bg-system')
+										label(for='headerSkin7') System
+									.checkbox-custom.fill.checkbox-success.mb5
+										input#headerSkin2(type='radio', name='headerSkin', value='bg-success')
+										label(for='headerSkin2') Success
+									.checkbox-custom.fill.mb5
+										input#headerSkin9(type='radio', name='headerSkin', value='bg-dark')
+										label(for='headerSkin9') Dark
+						#toolbox-sidebar.tab-pane(role='tabpanel')
+							form#toolbox-sidebar-skin
+								h4.mv20 Sidebar Skins
+								.skin-toolbox-swatches
+									.checkbox-custom.fill.mb5
+										input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+										label(for='sidebarSkin3') Dark
+									.checkbox-custom.fill.checkbox-disabled.mb5
+										input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+										label(for='sidebarSkin1') Light
+									.checkbox-custom.fill.checkbox-light.mb5
+										input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+										label(for='sidebarSkin2') Lighter
+						#toolbox-settings.tab-pane(role='tabpanel')
+							form#toolbox-settings-misc
+								h4.mv20.mtn Layout Options
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#header-option(type='checkbox', checked='')
+										label(for='header-option') Fixed Header
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#sidebar-option(type='checkbox', checked='')
+										label(for='sidebar-option') Fixed Sidebar
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#breadcrumb-option(type='checkbox')
+										label(for='breadcrumb-option') Fixed Breadcrumbs
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#breadcrumb-hidden(type='checkbox')
+										label(for='breadcrumb-hidden') Hide Breadcrumbs
+								h4.mv20 Layout Options
+								.form-group
+									.radio-custom.mb5
+										input#fullwidth-option(type='radio', checked='', name='layout-option')
+										label(for='fullwidth-option') Fullwidth Layout
+					.form-group.mn.br-t.p15
+						a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+		// Start: Main
+		#main
+			// Page Header
+			block header
+				include _header
+
+			//
+				---------------------------------------------------------------+
+				"#sidebar_left" Helper Classes:
+				-------------------------------------------------------------------+
+				* Positioning Classes:
+				'.affix' - Sets Sidebar Left to the fixed position
+				* Available Skin Classes:
+				.sidebar-dark (default no class needed)
+				.sidebar-light
+				.sidebar-light.light
+				-------------------------------------------------------------------+
+				Example: <aside id="sidebar_left" class="affix sidebar-light">
+				Results: Fixed Left Sidebar with light/white background
+				-----------------------------------------------------------------
+			// Start: Sidebar
+			aside#sidebar_left.nano.nano-light.affix
+				// Start: Sidebar Left Content
+				+makeSidebar('index.html')
+			// Start: Content-Wrapper
+			section#content_wrapper
+
+				// Begin: Content
+				section#content.table-layout.animated.fadeIn
+					// begin: .tray-center
+					.tray.tray-center
+						.row
+							.col-md-9
+								// Admin-panels
+								.admin-panels
+									.row
+										.col-md-12.admin-grid
+											#p01.panel.sort-disable(data-panel-title='false')
+												.panel-heading.of-v.br-b-n.pl25.pr25
+													span.pull-sm-left Revenue
+													span.pull-sm-left.text-muted.ml10 Monthly Stats
+													.mt-10.mt-sm-0.pull-sm-right.veil.reveal-sm-block
+														.btn-group
+															button.custom-dropdown.btn.btn-xs.btn-info.dropdown-toggle(type='button', data-toggle='dropdown')
+																| Filter range
+																span.caret.ml15
+															ul.dropdown-menu(role='menu')
+																li
+																	a#ecommerce_chart2-new-data(href='#') Type 1
+																li
+																	a#ecommerce_chart2-new-data-2(href='#') Type 2
+																li
+																	a#ecommerce_chart2-new-data-3(href='#') Type 3
+												.panel-body.pn
+													.tab-content
+														.tab-pane.active.p15(role='tabpanel')
+															// Chart Column
+															.pln
+																#ecommerce_chart1(style='height: 350px;')
+									.row
+										.col-sm-6.admin-grid
+											.panel.panel-widget.newsletter-widget.br-a
+												.panel-heading.br-b-n
+													span.panel-title.text-spacing-100  Subscribe
+												.panel-body.ptn.pb25
+													.input-group.inline-form
+														input.form-control(type='text', placeholder='Enter your email')
+														span.input-group-btn
+															button.btn.btn-default(type='button') Sign Up!
+											.panel.panel-celendar.br-a
+												// RD Calendar
+												.rd-calendar
+													.rdc-panel
+														.reveal-flex.flex-between
+															.rdc-today_day
+															.rdc-fullyear
+														.reveal-flex.flex-between.flex-middle.mt35
+															div
+																.rdc-today_month.reveal-inline-block
+																.rdc-today_date.reveal-inline-block
+															div
+																a.rdc-prev
+																a.rdc-next
+													.rdc-table
+										.col-sm-6.admin-grid
+											.panel.panel-popup.text-center.br-a
+												span.icon.icon-default.fa.fa-exclamation
+												h3.text-bold System Error Popup
+												p.mt15.text-spacing-50.text-silver Contact your system <br> administrator
+												a(href="#").mt15.btn.btn-lg.btn-default Ok
+
+											.panel.col-masonry.bar-graph
+												.panel-heading
+													span.panel-title Bar Graph
+												.panel-body.pn
+													#high-bars(style='width: 100%; height: 170px; margin: 0 auto')
+												.chart-legend(data-chart-id='#high-bars')
+													a.legend-item.btn-lined.btn.btn-primary.btn-sm.mr5(data-chart-id='0') Data 1
+													a.legend-item.btn-lined.btn.btn-default.btn-sm.mr5(data-chart-id='1') Data 2
+													a.legend-item.btn-lined.btn.btn-boston-blue.btn-sm(data-chart-id='2') Data 3
+
+							.col-md-3
+								.row
+									.col-sm-4.col-md-12
+										.panel.panel-tile.text-center.br-a.br-grey
+											.panel-body.pb15
+												span.icon.icon-default.fa.fa-male
+												h1.fs36.mt20.mbn 1,426
+												h6.mt10.text-dark NEW ORDERS
+											.panel-footer.br-t.p8
+												span.text-silver
+													|  3% Increase 1w ago
+									.col-sm-4.col-md-12
+										.panel.panel-tile.text-center.br-a.br-grey
+											.panel-body.pb15
+												span.icon.icon-default.fa.fa-database
+
+												h1.fs36.mt20.mbn 63,262
+												h6.mt10.text-dark TOTAL SALES GROSS
+											.panel-footer.br-t.p8
+												span.text-silver
+													|  2.7% Increase 1w ago
+									.col-sm-4.col-md-12
+										.panel.panel-tile.text-center.br-a.br-grey
+											.panel-body.pb15
+												span.icon.icon-default.fa.fa-shopping-cart
+												h1.fs36.mt20.mbn 248
+												h6.mt10.text-dark PENDING SHIPMENTS
+											.panel-footer.br-t.p8
+												span.text-silver
+													|  1% Increase 1w ago
+
+							.col-md-12.admin-grid
+								// Stats Top Graph Bot
+								#p7.panel
+									.panel-heading
+										span.panel-title Area Graph
+									.panel-body.pn
+										.row
+											.col-md-7.col-xl-9
+												.btn-group.mt20.ml30.mb15
+													button.custom-dropdown.btn.btn-xs.btn-info.dropdown-toggle(type='button', data-toggle='dropdown')
+														| Search State
+														span.caret.ml15
+													ul.dropdown-menu(role='menu')
+														li
+															a(href='#') Type 1
+														li
+															a(href='#') Type 2
+														li
+															a(href='#') Type 3
+												#high-line3.mb10.ml-md-20(style='width: 100%; height: 322px; margin: 0 auto')
+											.col-md-5.col-xl-3
+												.row.text-center.mt25
+													.col-sm-offset-0.col-xs-4.col-sm-offset-1.col-xl-3.col-md-offset-0.col-xl-offset-1
+														.ib
+															.pers.text-dark 65%
+															.mt15.fa.fa-male.text-boston-blue.fs14
+															.mt20.child-inline-block.progress-persent.text-center
+																.progress.vertical.bottom.progress-bar-xs.mt0.mbn
+																	.progress-bar.progress-bar-boston-blue(role='progressbar', aria-valuenow='65', aria-valuemin='0', aria-valuemax='100', style='height: 65%;')
+															p.mt20.text-dark.fw700.text-spacing-50.fs12.color-2 Male
+													.col-xl-3.col-xs-4
+														.ib
+															.pers.text-dark 82%
+															.mt15.fa.fa-female.text-default.fs14
+															.mt20.child-inline-block.progress-persent.text-center
+																.progress.vertical.bottom.progress-bar-xs.mt0.mbn
+																	.progress-bar.progress-bar-default(role='progressbar', aria-valuenow='82', aria-valuemin='0', aria-valuemax='100', style='height: 82%;')
+															p.mt20.text-dark.fw700.text-spacing-50.fs12.color-2 Female
+													.col-xl-3.col-xs-4
+														.ib
+															.pers.text-dark 44%
+															.mt15.fa.fa-child.text-primary.fs14
+															.mt20.child-inline-block.progress-persent.text-center
+																.progress.vertical.bottom.progress-bar-xs.mt0.mbn
+																	.progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='44', aria-valuemin='0', aria-valuemax='100', style='height: 44%;')
+															p.mt20.text-dark.fw700.text-spacing-50.fs12.color-2 Unemployed
+							.col-md-6
+								.panel.panel-widget.chat-widget
+									.panel-heading
+										span.panel-title  Chat Widget
+									.panel-body.panel-scroller.scroller-lg.pn
+										.media
+											.media-left
+												a(href='#')
+													img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+											.media-body
+												h5.media-heading
+													| Courtney Faught
+													small.text-muted  - 12:30am
+												|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+										.media
+											.media-body
+												h5.media-heading
+													| Joe Gibbons
+													small.text-muted  - 12:30am
+												|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+											.media-right
+												a(href='#')
+													img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+										.media
+											.media-left
+												a(href='#')
+													img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+											.media-body
+												h5.media-heading
+													| Courtney Faught
+													small.text-muted  - 12:30am
+												|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+										.media
+											.media-body
+												h5.media-heading
+													| Joe Gibbons
+													small.text-muted  - 12:30am
+												|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+											.media-right
+												a(href='#')
+													img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+										.media
+											.media-left
+												a(href='#')
+													img.media-object(alt='64x64', src='assets/img/avatars/2.jpg')
+											.media-body
+												h5.media-heading
+													| Courtney Faught
+													small.text-muted  - 12:30am
+												|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+										.media
+											.media-body
+												h5.media-heading
+													| Joe Gibbons
+													small.text-muted  - 12:30am
+												|  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+											.media-right
+												a(href='#')
+													img.media-object(alt='64x64', src='assets/img/avatars/1.jpg')
+									.panel-footer.bg-wild-sand
+										.input-group
+											input.form-control(type='text', placeholder='Enter your message here...')
+											span.input-group-btn
+												button.btn.btn-default(type='button') Send Message
+										// /input-group
+							.col-md-6
+									div
+										.panel
+											.panel-heading
+												span.panel-title  Activity
+											.panel-body.ptn.pbn.p20
+												ol.timeline-list
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-tags
+														.timeline-desc
+															b Michael
+															|  Added to his store:
+															= ' '
+															a(href='#') Ipod
+														.timeline-date 1:25am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-tags
+														.timeline-desc
+															b Sara
+															|  Added his store:
+															= ' '
+															a(href='#') Notebook
+														.timeline-date 3:05am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-usd
+														.timeline-desc
+															b Admin
+															|  created invoice for:
+															= ' '
+															a(href='#') Software
+														.timeline-date 4:15am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-usd
+														.timeline-desc
+															b Admin
+															|  created invoice for:
+															= ' '
+															a(href='#') Apple
+														.timeline-date 7:45am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-usd
+														.timeline-desc
+															b Admin
+															|  created invoice for:
+															= ' '
+															a(href='#') Software
+														.timeline-date 4:15am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-usd
+														.timeline-desc
+															b Admin
+															|  created invoice for:
+															= ' '
+															a(href='#') Apple
+														.timeline-date 7:45am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-tags
+														.timeline-desc
+															b Michael
+															|  Added his store:
+															= ' '
+															a(href='#') Ipod
+														.timeline-date 8:25am
+													li.timeline-item
+														.timeline-icon
+															span.fa.fa-fire
+														.timeline-desc
+															b Admin
+															|  created invoice for:
+															= ' '
+															a(href='#') Software
+														.timeline-date 4:15am
+
+							.col-md-6
+								.panel
+									.panel-heading
+										span.panel-title Column Graph
+									.panel-body.pn
+										div
+											.va-m
+												#high-column-circle(style='min-width: 440px; height: 340px; margin: 0 auto')
+											.row
+												.col-lg-10.col-lg-offset-1.text-center
+													.row.mt10
+														.col-xs-3.chart-caption
+															p 7%
+															p.chart-name Behance
+														.col-xs-3.chart-caption
+															p 19%
+															p.chart-name Twitter
+														.col-xs-3.chart-caption
+															p 30%
+															p.chart-name Facebook
+														.col-xs-3.chart-caption
+															p 44%
+															p.chart-name Dribble
+									.panel-footer.pn.text-center
+										a.btn-white.btn.btn-secondary.mt25.mb25(href='#') Add Social Network
+
+								.panel.column-chart.text-center
+									.panel-heading.br-n
+										span.panel-title Response Time
+									.panel-menu.pn.bg-white.br-n
+										.element-groups-custom.nav.chart-legend(data-chart-id='#high-column3')
+											li
+												a.legend-item.btn.btn-white(href='#', data-chart-id='0')  Tech
+											li
+												a.legend-item.btn.btn-white(href='#', data-chart-id='1')  Support
+											li
+												a.legend-item.btn.btn-white(href='#', data-chart-id='2')  Service
+											li
+												a.legend-item.btn.btn-white(href='#', data-chart-id='3')  Another
+									.panel-body.pn.mt10
+										h3.mt10 30.8 hrs
+										p.text-spacing-50.mt15.text-muted Average First response time <br> in past 30 days
+										#high-column3(style='width: 100%; height: 360px; margin: 0 auto')
+									.panel-footer.br-t.mt30.p20
+										p.text-muted.mbn.text-spacing-50
+											| A percent measure of tickets with first reply time
+							.col-md-6
+									.panel
+										.panel-heading.br-n.text-center
+											span.panel-title Circulars
+										.panel-body.pt10
+											.row.text-center
+												.col-xs-4.ph20
+													#c1.info-circle(value='80', data-circle-color='boston')
+													p.mt10.text-spacing-75.text-muted Twitter
+												.col-xs-4.ph20
+													#c2.info-circle(value='30', data-circle-color='default')
+													p.mt10.text-spacing-75.text-muted Facebook
+												.col-xs-4.ph20
+													#c3.info-circle(value='55', data-circle-color='primary')
+													p.mt10.text-spacing-75.text-muted Behance
+									.panel
+										.panel-heading
+											span.panel-title
+												| Badges and Labels
+										.panel-body
+											p
+												.element-groups-xs-custom
+													span.label.label-default Default
+													= ' '
+													span.label.label-primary Primary
+													= ' '
+													span.label.label-success Success
+													= ' '
+													span.label.label-info Info
+													= ' '
+													span.label.label-warning Warning
+													= ' '
+													span.label.label-danger Danger
+													= ' '
+													span.label.label-alert Alert
+													= ' '
+													span.label.label-system System
+											p.mt20
+												.element-groups-xs-custom
+													span.label.label-rounded.label-default Default
+													= ' '
+													span.label.label-rounded.label-primary Primary
+													= ' '
+													span.label.label-rounded.label-success Success
+													= ' '
+													span.label.label-rounded.label-info Info
+													= ' '
+													span.label.label-rounded.label-warning Warning
+													= ' '
+													span.label.label-rounded.label-danger Danger
+													= ' '
+													span.label.label-rounded.label-alert Alert
+													= ' '
+													span.label.label-rounded.label-system System
+											p.mt20
+												.element-groups-xs-custom
+													span.label.label-circle.label-default 12
+													= ' '
+													span.label.label-circle.label-primary 41
+													= ' '
+													span.label.label-circle.label-success 25
+													= ' '
+													span.label.label-circle.label-info 51
+													= ' '
+													span.label.label-circle.label-warning 94
+													= ' '
+													span.label.label-circle.label-danger 32
+													= ' '
+													span.label.label-circle.label-alert 26
+													= ' '
+													span.label.label-circle.label-system 17
+
+									.panel.tagcloud-widget
+										.panel-heading
+											span.panel-title  Tag Cloud
+										.panel-body
+											span.label.label-default Photoshop
+
+											= ' '
+											span.label.label-default Fireworks
+
+											= ' '
+											span.label.label-default Dreamweaver
+
+											= ' '
+											span.label.label-default Sublime
+
+											= ' '
+											span.label.label-default Firefox
+
+											= ' '
+											span.label.label-default Chrome
+
+											= ' '
+											span.label.label-default Microsoft
+
+											= ' '
+											span.label.label-default Apple
+
+											= ' '
+											span.label.label-default Google
+
+											= ' '
+											span.label.label-default Facebook
+
+											= ' '
+											span.label.label-default Twitter
+
+											= ' '
+											span.label.label-default LinkedIn
+
+											= ' '
+											span.label.label-default Design
+
+									#spy3.panel.panel-widget.compose-widget
+										.panel-heading
+											span.panel-title  Quick Post
+										.panel-body
+											.summernote-quick Compose your message here...
+										.panel-footer.pv25.ph20.text-right.br-t
+											button.btn-sm.btn.btn-white.ph20.mr15(type='button') Draft
+											button.btn-sm.btn.btn-default.ph35(type='button') Send
+
+					// begin: .tray-right
+					aside.tray.tray-right.tray270.pn.hidden(data-tray-height='match')
+						// store activity timeline
+						ol.timeline-list.pl5.mt5
+							li.timeline-item
+								.timeline-icon.bg-dark.light
+									span.fa.fa-tags
+								.timeline-desc
+									b Michael
+									|  Added a new item to his store:
+									a(href='#') Ipod
+								.timeline-date 1:25am
+							li.timeline-item
+								.timeline-icon.bg-dark.light
+									span.fa.fa-tags
+								.timeline-desc
+									b Sara
+									|  Added a new item to his store:
+									a(href='#') Notebook
+								.timeline-date 3:05am
+							li.timeline-item
+								.timeline-icon.bg-success
+									span.fa.fa-usd
+								.timeline-desc
+									b Admin
+									|  created a new invoice for:
+									a(href='#') Software
+								.timeline-date 4:15am
+							li.timeline-item
+								.timeline-icon.bg-warning
+									span.fa.fa-pencil
+								.timeline-desc
+									b Laura
+									|  edited her work experience
+								.timeline-date 5:25am
+							li.timeline-item
+								.timeline-icon.bg-success
+									span.fa.fa-usd
+								.timeline-desc
+									b Admin
+									|  created a new invoice for:
+									a(href='#') Apple Inc.
+								.timeline-date 7:45am
+							li.timeline-item
+								.timeline-icon.bg-dark.light
+									span.fa.fa-tags
+								.timeline-desc
+									b Michael
+									|  Added a new item to his store:
+									a(href='#') Ipod
+								.timeline-date 8:25am
+							li.timeline-item
+								.timeline-icon.bg-dark.light
+									span.fa.fa-tags
+								.timeline-desc
+									b Sara
+									|  Added a new item to his store:
+									a(href='#') Watch
+								.timeline-date 9:35am
+							li.timeline-item
+								.timeline-icon.bg-system
+									span.fa.fa-fire
+								.timeline-desc
+									b Admin
+									|  created a new invoice for:
+									a(href='#') Software
+								.timeline-date 4:15am
+							li.timeline-item
+								.timeline-icon.bg-warning
+									span.fa.fa-pencil
+								.timeline-desc
+									b Laura
+									|  edited her work experience
+								.timeline-date 5:25am
+							li.timeline-item
+								.timeline-icon.bg-success
+									span.fa.fa-usd
+								.timeline-desc
+									b Admin
+									|  created a new invoice for:
+									a(href='#') Software
+								.timeline-date 4:15am
+							li.timeline-item
+								.timeline-icon.bg-warning
+									span.fa.fa-pencil
+								.timeline-desc
+									b Laura
+									|  edited her work experience
+								.timeline-date 5:25am
+							li.timeline-item
+								.timeline-icon.bg-success
+									span.fa.fa-usd
+								.timeline-desc
+									b Admin
+									|  created a new invoice for:
+									a(href='#') Apple Inc.
+								.timeline-date 7:45am
+							li.timeline-item
+								.timeline-icon.bg-dark.light
+									span.fa.fa-tags
+								.timeline-desc
+									b Michael
+									|  Added a new item to his store:
+									a(href='#') Ipod
+								.timeline-date 8:25am
+							li.timeline-item
+								.timeline-icon.bg-dark.light
+									span.fa.fa-tags
+								.timeline-desc
+									b Sara
+									|  Added a new item to his store:
+									a(href='#') Watch
+								.timeline-date 9:3
+				block footer
+					include _footer
+			// Start: Right Sidebar
+			aside#sidebar_right.nano.affix
+				// Start: Sidebar Right Content
+				.sidebar-right-content.nano-content
+					.tab-block.sidebar-block.br-n
+						ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+							li.active
+								a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+							li
+								a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+							li
+								a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+						.tab-content.br-n
+							#sidebar-right-tab1.tab-pane.active
+								h5.title-divider.text-muted.mb20
+									| Server Statistics
+									a(href="#")
+										span.pull-right
+											| 2013
+											i.fa.fa-caret-down.ml5
+								.progress.mh5
+									.progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+										span.fs11 DB Request
+								.progress.mh5
+									.progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+										span.fs11.text-left Server Load
+								.progress.mh5
+									.progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+										span.fs11.text-left Server Connections
+								h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+								.row
+									.col-xs-5
+										h3.text-primary.mn.pl5 132
+									.col-xs-7.text-right
+										h3.text-success-dark.mn
+											i.fa.fa-caret-up
+											|  13.2%
+								h5.title-divider.text-muted.mt25.mb10 Database Request
+								.row
+									.col-xs-5
+										h3.text-primary.mn.pl5 212
+									.col-xs-7.text-right
+										h3.text-success-dark.mn
+											i.fa.fa-caret-up
+											|  25.6%
+								h5.title-divider.text-muted.mt25.mb10 Server Response
+								.row
+									.col-xs-5
+										h3.text-primary.mn.pl5 82.5
+									.col-xs-7.text-right
+										h3.text-danger.mn
+											i.fa.fa-caret-down
+											|  17.9%
+								h5.title-divider.text-muted.mt40.mb20
+									| Server Statistics
+									span.pull-right.text-primary.fw600 USA
+							#sidebar-right-tab2.tab-pane
+							#sidebar-right-tab3.tab-pane
+		// core scripts
+		script(src='plugins/core.min.js')
+		// Theme Javascript
+		script(src='assets/js/utility/utility.js')
+		script(src='assets/js/demo/demo.js')
+		script(src='assets/js/main.js')
+		// Widget Javascript
+		script(src='assets/js/demo/widgets.js')
+		script(type='text/javascript').
+			jQuery(document).ready(function () {
+				"use strict";
+				// Init Demo JS
+				Demo.init();
+				// Init Theme Core
+				Core.init();
+				demoHighCharts.init();
+				runVectorMaps();
+				$(window).trigger('resize');
+				// Init plugins for ".calendar-widget"
+				// plugins: FullCalendar
+				//
+				$('#calendar-widget').fullCalendar({
+					// contentHeight: 397,
+					editable: true,
+					events: [{
+						title: 'Sony Meeting',
+						start: '2015-05-1',
+						end: '2015-05-3',
+						className: 'fc-event-success'
+					}, {
+						title: 'Conference',
+						start: '2015-05-11',
+						end: '2015-05-13',
+						className: 'fc-event-warning'
+					}, {
+						title: 'Lunch Testing',
+						start: '2015-05-21',
+						end: '2015-05-23',
+						className: 'fc-event-primary'
+					}
+					],
+					eventRender: function (event, element) {
+						// create event tooltip using bootstrap tooltips
+						$(element).attr("data-original-title", event.title);
+						$(element).tooltip({
+							container: 'body',
+							delay: {
+								"show": 100,
+								"hide": 200
+							}
+						});
+						// create a tooltip auto close timer
+						$(element).on('show.bs.tooltip', function () {
+							var autoClose = setTimeout(function () {
+								$('.tooltip').fadeOut();
+							}, 3500);
+						});
+					}
+				});
+				// Init plugins for ".task-widget"
+				// plugins: Custom Functions + jQuery Sortable
+				//
+				var taskWidget = $('div.task-widget');
+				var taskItems = taskWidget.find('li.task-item');
+				var currentItems = taskWidget.find('ul.task-current');
+				var completedItems = taskWidget.find('ul.task-completed');
+				// Init jQuery Sortable on Task Widget
+				taskWidget.sortable({
+					items: taskItems, // only init sortable on list items (not labels)
+					handle: '.task-menu',
+					axis: 'y',
+					connectWith: ".task-list",
+					update: function (event, ui) {
+						var Item = ui.item;
+						var ParentList = Item.parent();
+						// If item is already checked move it to "current items list"
+						if (ParentList.hasClass('task-current')) {
+							Item.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+						}
+						if (ParentList.hasClass('task-completed')) {
+							Item.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+						}
+					}
+				});
+				// Custom Functions to handle/assign list filter behavior
+				taskItems.on('click', function (e) {
+					e.preventDefault();
+					var This = $(this);
+					var Target = $(e.target);
+					if (Target.is('.task-menu') && Target.parents('.task-completed').length) {
+						This.remove();
+						return;
+					}
+					if (Target.parents('.task-handle').length) {
+						// If item is already checked move it to "current items list"
+						if (This.hasClass('item-checked')) {
+							This.removeClass('item-checked').find('input[type="checkbox"]').prop('checked', false);
+						}
+						// Otherwise move it to the "completed items list"
+						else {
+							This.addClass('item-checked').find('input[type="checkbox"]').prop('checked', true);
+						}
+					}
+				});
+				var highColors = [bgSystem, bgSuccess, bgWarning, bgPrimary];
+				// Chart data
+				var seriesData = [{
+					name: 'Phones',
+					data: [5.0, 9, 17, 22, 19, 11.5, 5.2, 9.5, 11.3, 15.3, 19.9, 24.6]
+				}, {
+					name: 'Notebooks',
+					data: [2.9, 3.2, 4.7, 5.5, 8.9, 12.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+				}, {
+					name: 'Desktops',
+					data: [15, 19, 22.7, 29.3, 22.0, 17.0, 23.8, 19.1, 22.1, 14.1, 11.6, 7.5]
+				}, {
+					name: 'Music Players',
+					data: [11, 6, 5, 15, 17.0, 22.0, 30.8, 24.1, 14.1, 11.1, 9.6, 6.5]
+				}];
+				var ecomChart = $('#ecommerce_chart1');
+				if (ecomChart.length) {
+					ecomChart.highcharts({
+						chart: {
+							zoomType: 'x',
+							backgroundColor: 'transparent',
+						},
+						tooltip:{
+							backgroundColor: null,
+							borderWidth: 0,
+							shadow: false,
+							useHTML: true,
+							style: {
+								padding: 0
+							},
+							formatter: function () {
+								return "<span class='tooltip-value'>" + this.y + "</span><span class='tooltip-text'>ORDERS</span>" + "<span class='tooltip-year'>" + this.x + "</span>";
+							}
+						},
+						credits: false,
+						title: {
+							text: ''
+						},
+						yAxis: {
+							title: {
+								text: ''
+							},
+							gridLineColor: '#eeeeee',
+							gridLineWidth: 1,
+							labels: {
+								formatter: function () {
+									return this.value;
+								},
+								style: {
+									color: '#9e9e9e',
+									"textTransform": "uppercase",
+									"fontSize": "12px",
+									"letterSpacing": 0.02
+								}
+							}
+						},
+						xAxis: {
+							type: 'datetime',
+							categories: ['Jan', 'Feb', 'Mar', 'Apr',
+								'May', 'Jun', 'Jul', 'Aug',
+								'Sep', 'Oct', 'Nov', 'Dec'
+							],
+							tickWidth: 1,
+							lineWidth: 1,
+							labels: {
+								overflow: 'justify',
+								style: {
+									color: '#212121',
+									"fontSize": "12px",
+									"fontWeight": "700",
+									"letterSpacing": 0.01
+								},
+								y: 30
+							}
+						},
+						legend: {
+							enabled: false
+						},
+						plotOptions: {
+							area: {
+								fillColor: {
+									linearGradient: {
+										x1: 0,
+										y1: 0,
+										x2: 0,
+										y2: 1
+									},
+									stops: [
+										[0, 'rgba(129, 212, 250, .7)'],
+										[0.5, 'rgba(129, 212, 250, .3)'],
+										[1, 'rgba(129, 212, 250, 0)']
+									]
+								},
+								marker: {
+									fillColor: '#fff',
+									radius: 6,
+									lineWidth: 4,
+									lineColor: '#35a7ff'
+								},
+								lineWidth: 3,
+								threshold: null
+							}
+						},
+
+						series: [{
+							type: 'area',
+							name: 'Orders',
+							data: [0, 1400, 900, 1200, 1500, 1000, 1300, 1500, 2900, 2500, 2600, 2200],
+							color: '#35a7ff'
+						}]
+					});
+
+					$('#ecommerce_chart2-new-data').click(function (e) {
+						e.preventDefault();
+						var chart = $('#ecommerce_chart1').highcharts();
+						chart.series[0].setData([0, 1400, 900, 1200, 1500, 1000, 1300, 1500, 2900, 2500, 2600, 2200]);
+					});
+					$('#ecommerce_chart1-new-data-2').click(function (e) {
+						e.preventDefault();
+
+						var chart = $('#ecommerce_chart1').highcharts();
+						chart.series[0].setData([1400, 1200, 0, 900, 1500, 1300, 1000, 2900, 1500, 2600, 2500, 2200]);
+					});
+					$('#ecommerce_chart1-new-data-3').click(function (e) {
+						e.preventDefault();
+
+						var chart = $('#ecommerce_chart1').highcharts();
+						chart.series[0].setData([100, 400, 900, 1100, 1500, 1400, 1600, 1100, 2000, 2100, 1600, 2000]);
+					});
+				}
+
+				var circleDemo = $('#high-column-circle');
+
+				if( circleDemo.length ){
+					circleDemo.highcharts({
+						exporting: {enabled: false},
+						credits: false,
+						chart: {
+							backgroundColor: 'transparent',
+							polar: true,
+							marginLeft: 0,
+							marginRight: 80,
+							marginBottom: -90,
+							marginTop: -10
+						},
+
+						title: {
+							text: null,
+							style: {
+								color: '#fff'
+							}
+						},
+
+						pane: {
+							startAngle: 0,
+							endAngle: 360
+						},
+
+						xAxis: {
+							lineWidth: 0,
+							tickLength: 0,
+							tickInterval: 90,
+							min: 0,
+
+							labels: {
+								enabled: false
+							},
+							gridLineWidth: 0
+						},
+
+						yAxis: {
+							min: 0,
+							maxPadding: 0,
+							tickInterval: 2,
+							labels: {
+								enabled: false
+							},
+							gridLineWidth: 0
+						},
+						tooltip: {
+							shared: true,
+							useHTML: true,
+							headerFormat: '<span class="high-tooltip">{point.key}</span>',
+							pointFormat: '',
+							footerFormat: '',
+							valueDecimals: 2,
+							backgroundColor: 'rgba(0, 0, 0, 0)',
+							borderColor: 'rgba(0, 0, 0, 0)',
+							shadow: false,
+							style: {
+								color: '#212121',
+								fontSize: "14px",
+								fontFamily: 'inherit'
+							},
+							positioner: function (boxWidth, boxHeight, point) {
+								var nX = ((circleDemo.width() - 80) / 2) + ((point.plotX - ((circleDemo.width() - 80) / 2)) / 2);
+								var nY = (circleDemo.height() / 2) + ((point.plotY - (circleDemo.height() / 2)) / 2) - 12;
+								circleDemo.find(".high-tooltip").css("width", circleDemo.width() - nX - 50);
+								return {x: nX, y: nY};
+							}
+						},
+
+						plotOptions: {
+							series: {
+								pointStart: 0,
+								pointInterval: 90,
+								shadow: true,
+								borderWidth: 0,
+								pointPadding: 0,
+								groupPadding: 0,
+							},
+							column: {
+								pointPadding: 0,
+								groupPadding: 0
+							}
+						},
+						legend: {
+							enabled: false
+						},
+
+						series: [{
+							name: 'Brands',
+							colorByPoint: false,
+							type: 'column',
+							pointPlacement: 0.2,
+							data: [{
+								name: 'Dribble',
+								y: 120,
+								color: '#82629c'
+							}, {
+								name: 'Behance',
+								y: 45,
+								color: '#8b5cb1'
+							}, {
+								name: 'Twitter',
+								y: 60,
+								color: '#59426c'
+							}, {
+								name: 'Facebook',
+								y: 90,
+								color: '#554c5d'
+							}]
+						}]
+					});
+				}
+
+				$('.summernote-quick').summernote({
+					height: 220, //set editable area's height
+					focus: false, //set focus editable area after Initialize summernote
+					toolbar: [
+						['style', ['bold', 'italic', 'underline',]],
+						['para', ['ul', 'ol', 'paragraph']],
+						['height', ['height']],
+					]
+				});
+
+				// Widget VectorMap
+				function runVectorMaps() {
+					// Jvector Map Plugin
+					var runJvectorMap = function () {
+						// Data set
+						var mapData = [900, 700, 350, 500];
+						// Init Jvector Map
+						$('#WidgetMap').vectorMap({
+							map: 'us_lcc_en',
+							//regionsSelectable: true,
+							backgroundColor: 'transparent',
+							series: {
+								markers: [{
+									attribute: 'r',
+									scale: [3, 7],
+									values: mapData
+								}]
+							},
+							regionStyle: {
+								initial: {
+									fill: '#E8E8E8'
+								},
+								hover: {
+									"fill-opacity": 0.3
+								}
+							},
+							markers: [{
+								latLng: [37.78, -122.41],
+								name: 'San Francisco,CA'
+							}, {
+								latLng: [36.73, -103.98],
+								name: 'Texas,TX'
+							}, {
+								latLng: [38.62, -90.19],
+								name: 'St. Louis,MO'
+							}, {
+								latLng: [40.67, -73.94],
+								name: 'New York City,NY'
+							}],
+							markerStyle: {
+								initial: {
+									fill: '#a288d5',
+									stroke: '#b49ae0',
+									"fill-opacity": 1,
+									"stroke-width": 10,
+									"stroke-opacity": 0.3,
+									r: 3
+								},
+								hover: {
+									stroke: 'black',
+									"stroke-width": 2
+								},
+								selected: {
+									fill: 'blue'
+								},
+								selectedHover: {}
+							},
+						});
+						// Manual code to alter the Vector map plugin to
+						// allow for individual coloring of countries
+						var states = ['US-CA', 'US-TX', 'US-MO',
+							'US-NY'
+						];
+						var colors = [bgInfo, bgPrimaryLr, bgSuccessLr, bgWarningLr];
+						var colors2 = [bgInfo, bgPrimary, bgSuccess, bgWarning];
+						$.each(states, function (i, e) {
+							$("#WidgetMap path[data-code=" + e + "]").css({
+								fill: colors[i]
+							});
+						});
+						$('#WidgetMap').find('.jvectormap-marker')
+										.each(function (i, e) {
+											$(e).css({
+												fill: colors2[i],
+												stroke: colors2[i]
+											});
+										});
+					}
+					if ($('#WidgetMap').length) {
+						runJvectorMap();
+					}
+				}
+
+				var isotope = $(".isotope");
+
+				if (isotope.length) {
+					var i, isogroup = [];
+					for (i = 0; i < isotope.length; i++) {
+						var isotopeItem = isotope[i]
+										, iso = new Isotope(isotopeItem, {
+							itemSelector: '.isotope-item',
+							layoutMode: isotopeItem.getAttribute('data-isotope-layout') ? isotopeItem.getAttribute('data-isotope-layout') : 'masonry',
+							filter: '*'
+						});
+						isogroup.push(iso);
+					}
+
+					$(window).on('load', function () {
+						setTimeout(function () {
+							var i;
+							for (i = 0; i < isogroup.length; i++) {
+								isogroup[i].element.className += " isotope--loaded";
+								isogroup[i].layout();
+							}
+						}, 600);
+					});
+
+					$("[data-isotope-filter]").on("click", function (e) {
+						e.preventDefault();
+						var filter = $(this);
+						filter.parents(".isotope-filters").find('.active').removeClass("active");
+						filter.addClass("active");
+						var iso = $('.isotope[data-isotope-group="' + this.getAttribute("data-isotope-group") + '"]');
+						iso.isotope({
+							itemSelector: '.isotope-item',
+							layoutMode: iso.attr('data-isotope-layout') ? iso.attr('data-isotope-layout') : 'masonry',
+							filter: this.getAttribute("data-isotope-filter") == '*' ? '*' : '[data-filter*="' + this.getAttribute("data-isotope-filter") + '"]'
+						});
+					}).eq(0).trigger("click")
+				}
+			});

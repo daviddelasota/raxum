@@ -1,0 +1,72 @@
+block header_horizontal
+	// Start: Header
+	header.navbar.navbar-fixed-top.navbar-shadow
+		.navbar-branding
+			a.center-block.navbar-brand(href='index.html') bluefountain
+		ul.nav.navbar-nav.navbar-left
+			li.header-link.active
+				a(href="index.html") Dashboard
+			li.header-link.veil.reveal-xs-block
+				a(href="documentation/index.html") Documentation
+			li.navbar-search
+				form.navbar-form.navbar-left.navbar-search.alt(role='search')
+					.form-group
+						span.icon.fa.fa-search
+						input.form-control(type='text', placeholder='Search...')
+				a.veil.reveal-md-block.btn.btn-info.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false')
+					| Dropdown
+					= ' '
+					span.caret.caret-tp
+				ul.dropdown-menu(role='menu')
+					li
+						a(href='#') Action
+					li
+						a(href='#') Another action
+					li
+						a(href='#') Something else here
+					li.divider
+					li
+						a(href='#') Separated link
+			li.admin-dropdown
+				ul.nav.navbar-nav.navbar-right
+					li.dropdown.menu-merge
+						a.dropdown-toggle(href='#', data-toggle='dropdown')
+							img.veil.reveal-sm-inline-block.mw64.br64(src='assets/img/avatars/1.jpg', alt='avatar')
+						ul.dropdown-menu.list-group.dropdown-persist.w250(role='menu')
+							li.dropdown-header.clearfix
+								.pull-left.ml10
+									select#user-status
+										optgroup(label='Current Status:')
+											option(value='1-1') Away
+											option(value='1-2') Offline
+											option(value='1-3', selected='selected') Online
+								.pull-right.mr10
+									select#user-role
+										optgroup(label='Logged in As:')
+											option(value='1-1') Client
+											option(value='1-2') Editor
+											option(value='1-3', selected='selected') Admin
+							li.list-group-item
+								a.animated.animated-short.fadeInUp(href='#')
+									span.fa.fa-envelope
+									|  Messages
+									span.label.label-warning 2
+							li.list-group-item
+								a.animated.animated-short.fadeInUp(href='#')
+									span.fa.fa-user
+									|  Friends
+									span.label.label-warning 6
+							li.list-group-item
+								a.animated.animated-short.fadeInUp(href='#')
+									span.fa.fa-bell
+									|  Notifications
+							li.list-group-item
+								a.animated.animated-short.fadeInUp(href='#')
+									span.fa.fa-gear
+									|  Settings
+							li.dropdown-footer
+								a(href='pages_login.html')
+									span.fa.fa-power-off.pr5
+									|  Logout
+			li#toggle_sidemenu_t.mn.text-black
+				span.fa.fa-caret-up

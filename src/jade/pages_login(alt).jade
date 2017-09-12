@@ -1,0 +1,56 @@
+extends  _skeleton
+include _ui-sidebar
+
+block stylesheets
+	link(rel='stylesheet', type='text/css', href='assets/admin-tools/admin-forms/css/admin-forms.css')
+
+block body
+	body.external-page.external-alt.sb-l-c.sb-r-c
+		// Start: Main
+		#main.animated.fadeIn
+			// Start: Content-Wrapper
+			section#content_wrapper
+				// Begin: Content
+				section#content
+					#login.center-block
+						// Login Logo
+						.row.table-layout
+							a(href='index.html', title='Return to Dashboard')
+								img.center-block.img-responsive(src='assets/img/logos/logo.png', title='TemplateMonster Logo', style='max-width: 275px;')
+						// Login Panel/Form
+						.panel.mt30.mb25
+							form#contact(method='post', action='/')
+								.panel-body.p15.pt40
+									h3.text-center.mtn Sign in page
+									.section.mt35
+										input#username.form-control(type='text', name='username', placeholder='Enter User Name')
+									.section.mt15
+										input#password.form-control(type='password', name='password', placeholder='Enter User Password')
+									.clearfix.mt20
+										.pull-left
+											.checkbox-custom.checkbox-default
+												input#checkboxDefault2(type='checkbox', checked='')
+												label.fw400(for='checkboxDefault2') Remember me
+										.pull-right
+											a(href="#") Forgot password?
+									button.mt20.btn.btn-block.btn-default(type='submit') Sign In!
+									p.mt25="Haven't yet registration? "
+										a.link(href="#") Sign up here
+									.login-share
+										a(href="#").facebook Facebook
+										a(href="#").google Google+
+		// core scripts
+		script(src='plugins/core.min.js')
+		// Theme Javascript
+		script(src='assets/js/utility/utility.js')
+		script(src='assets/js/demo/demo.js')
+		script(src='assets/js/main.js')
+		// Page Javascript
+		script(type='text/javascript').
+			jQuery(document).ready(function () {
+				"use strict";
+				// Init Theme Core
+				Core.init();
+				// Init Demo JS
+				Demo.init();
+			});

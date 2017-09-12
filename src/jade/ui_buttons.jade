@@ -1,0 +1,706 @@
+extends  _skeleton
+include _ui-sidebar
+
+block stylesheets
+	link(rel='stylesheet', type='text/css', href='plugins/ladda/ladda.min.css')
+	link(rel='stylesheet', type='text/css', href='assets/fonts/zocial/zocial.css')
+
+block body
+	body.ui-buttons-page
+		// Start: Theme Preview Pane
+		#skin-toolbox
+			.panel
+				.panel-heading
+					span.panel-icon
+						i.fa.fa-gear.text-primary
+					span.panel-title  Theme Options
+				.panel-body.pn
+					ul.nav.nav-list.nav-list-sm.pl15.pt10(role='tablist')
+						li.active
+							a(href='#toolbox-header', role='tab', data-toggle='tab') Navbar
+						li
+							a(href='#toolbox-sidebar', role='tab', data-toggle='tab') Sidebar
+						li
+							a(href='#toolbox-settings', role='tab', data-toggle='tab') Misc
+					.tab-content.p20.ptn.pb15
+						#toolbox-header.tab-pane.active(role='tabpanel')
+							form#toolbox-header-skin
+								h4.mv20 Header Skins
+								.skin-toolbox-swatches
+									.checkbox-custom.checkbox-disabled.fill.mb5
+										input#headerSkin8(type='radio', name='headerSkin', checked='', value='')
+										label(for='headerSkin8') Light
+									.checkbox-custom.fill.checkbox-primary.mb5
+										input#headerSkin1(type='radio', name='headerSkin', value='bg-primary')
+										label(for='headerSkin1') Primary
+									.checkbox-custom.fill.checkbox-info.mb5
+										input#headerSkin3(type='radio', name='headerSkin', value='bg-info')
+										label(for='headerSkin3') Info
+									.checkbox-custom.fill.checkbox-warning.mb5
+										input#headerSkin4(type='radio', name='headerSkin', value='bg-warning')
+										label(for='headerSkin4') Warning
+									.checkbox-custom.fill.checkbox-danger.mb5
+										input#headerSkin5(type='radio', name='headerSkin', value='bg-danger')
+										label(for='headerSkin5') Danger
+									.checkbox-custom.fill.checkbox-alert.mb5
+										input#headerSkin6(type='radio', name='headerSkin', value='bg-alert')
+										label(for='headerSkin6') Alert
+									.checkbox-custom.fill.checkbox-system.mb5
+										input#headerSkin7(type='radio', name='headerSkin', value='bg-system')
+										label(for='headerSkin7') System
+									.checkbox-custom.fill.checkbox-success.mb5
+										input#headerSkin2(type='radio', name='headerSkin', value='bg-success')
+										label(for='headerSkin2') Success
+									.checkbox-custom.fill.mb5
+										input#headerSkin9(type='radio', name='headerSkin', value='bg-dark')
+										label(for='headerSkin9') Dark
+						#toolbox-sidebar.tab-pane(role='tabpanel')
+							form#toolbox-sidebar-skin
+								h4.mv20 Sidebar Skins
+								.skin-toolbox-swatches
+									.checkbox-custom.fill.mb5
+										input#sidebarSkin3(type='radio', name='sidebarSkin', checked='', value='')
+										label(for='sidebarSkin3') Dark
+									.checkbox-custom.fill.checkbox-disabled.mb5
+										input#sidebarSkin1(type='radio', name='sidebarSkin', value='sidebar-light')
+										label(for='sidebarSkin1') Light
+									.checkbox-custom.fill.checkbox-light.mb5
+										input#sidebarSkin2(type='radio', name='sidebarSkin', value='sidebar-light light')
+										label(for='sidebarSkin2') Lighter
+						#toolbox-settings.tab-pane(role='tabpanel')
+							form#toolbox-settings-misc
+								h4.mv20.mtn Layout Options
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#header-option(type='checkbox', checked='')
+										label(for='header-option') Fixed Header
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#sidebar-option(type='checkbox', checked='')
+										label(for='sidebar-option') Fixed Sidebar
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#breadcrumb-option(type='checkbox')
+										label(for='breadcrumb-option') Fixed Breadcrumbs
+								.form-group
+									.checkbox-custom.fill.mb5
+										input#breadcrumb-hidden(type='checkbox')
+										label(for='breadcrumb-hidden') Hide Breadcrumbs
+								h4.mv20 Layout Options
+								.form-group
+									.radio-custom.mb5
+										input#fullwidth-option(type='radio', checked='', name='layout-option')
+										label(for='fullwidth-option') Fullwidth Layout
+								.form-group.mb20
+									.radio-custom.radio-disabled.mb5
+										input#boxed-option(type='radio', name='layout-option', disabled='')
+										label(for='boxed-option')
+											| Boxed Layout
+											b.text-muted (Coming Soon)
+					.form-group.mn.br-t.p15
+						a#clearLocalStorage.btn.btn-primary.btn-block.pb10.pt10(href='#') Clear LocalStorage
+		// Start: Main
+		#main
+			// Page Header
+			block header
+				include _header
+			// Start: Sidebar
+			aside#sidebar_left.nano.nano-light.affix
+				// Start: Sidebar Left Content
+				+makeSidebar('ui_buttons.html')
+			// Start: Content-Wrapper
+			section#content_wrapper
+				// Start: Topbar-Dropdown
+				#topbar-dropmenu.alt
+					.topbar-menu.row
+						.col-xs-4.col-sm-2
+							a.metro-tile.bg-primary.light(href='#')
+								span.glyphicon.glyphicon-inbox.text-muted
+								span.metro-title Messages
+						.col-xs-4.col-sm-2
+							a.metro-tile.bg-info.light(href='#')
+								span.glyphicon.glyphicon-user.text-muted
+								span.metro-title Users
+						.col-xs-4.col-sm-2
+							a.metro-tile.bg-success.light(href='#')
+								span.glyphicon.glyphicon-headphones.text-muted
+								span.metro-title Support
+						.col-xs-4.col-sm-2
+							a.metro-tile.bg-system.light(href='#')
+								span.glyphicon.glyphicon-facetime-video.text-muted
+								span.metro-title Videos
+						.col-xs-4.col-sm-2
+							a.metro-tile.bg-warning.light(href='#')
+								span.fa.fa-gears.text-muted
+								span.metro-title Settings
+						.col-xs-4.col-sm-2
+							a.metro-tile.bg-alert.light(href='#')
+								span.glyphicon.glyphicon-picture.text-muted
+								span.metro-title Pictures
+
+				#content.pn.pb150.animated.fadeIn
+					// Start: Color Variations
+					.hero-content.bg-light.dark.pv30.br-b.br-grey
+						.col-adjust-8
+							.row.mb10.text-center
+								h3.mtn.mb30.fw400 Color Variations
+								.col-xs-4.col-sm-2
+									code .btn-light
+								.col-xs-4.col-sm-2
+									code .btn-default
+								.col-xs-4.col-sm-2
+									code .btn-primary
+								.col-xs-4.col-sm-2
+									code .btn-success
+								.col-xs-4.col-sm-2
+									code .btn-info
+								.col-xs-4.col-sm-2
+									code .btn-warning
+								.col-xs-4.col-sm-2
+									code .btn-danger
+								.col-xs-4.col-sm-2
+									code .btn-alert
+								.col-xs-4.col-sm-2
+									code .btn-system
+								.clearfix
+							.row
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-galery.pv20.fw600.text-center #eeeeee
+									.text-uppercase.bg-alto.pv20.fw600.text-center #e0e0e0
+									.text-uppercase.bg-silver.pv20.fw600.text-center #bdbdbd
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-default.light.pv20.fw600.text-center #9ad3ff
+									.text-uppercase.bg-default.pv20.fw600.text-center #5db9ff
+									.text-uppercase.bg-default.dark.pv20.fw600.text-center #35a7ff
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-primary.light.pv20.fw600.text-center #fff3a5
+									.text-uppercase.bg-primary.pv20.fw600.text-center #ffec70
+									.text-uppercase.bg-primary.dark.pv20.fw600.text-center #ffe74c
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-success.light.pv20.text-white.fw600.text-center #81e3aa
+									.text-uppercase.bg-success.pv20.text-white.fw600.text-center #36d377
+									.text-uppercase.bg-success.dark.pv20.text-white.fw600.text-center #04c855
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-info.light.pv20.text-white.fw600.text-center #7fc8f4
+									.text-uppercase.bg-info.pv20.text-white.fw600.text-center #33a7ee
+									.text-uppercase.bg-info.dark.pv20.text-white.fw600.text-center #0091ea
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-warning.light.pv20.text-white.fw600.text-center #ffd392
+									.text-uppercase.bg-warning.pv20.text-white.fw600.text-center #ffb951
+									.text-uppercase.bg-warning.dark.pv20.text-white.fw600.text-center #ffa726
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-danger.light.pv20.text-white.fw600.text-center #ffacb1
+									.text-uppercase.bg-danger.pv20.text-white.fw600.text-center #ff7a83
+									.text-uppercase.bg-danger.dark.pv20.text-white.fw600.text-center #ff5964
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-alert.light.pv20.text-white.fw600.text-center #9bb0c5
+									.text-uppercase.bg-alert.pv20.text-white.fw600.text-center #6081a3
+									.text-uppercase.bg-alert.dark.pv20.text-white.fw600.text-center #38618c
+								.col-xs-4.col-sm-2
+									.text-uppercase.bg-system.light.pv20.text-white.fw600.text-center #48C9A9
+									.text-uppercase.bg-system.pv20.text-white.fw600.text-center #37BC9B
+									.text-uppercase.bg-system.dark.pv20.text-white.fw600.text-center #30A487
+					// Start: Button States
+					.mb30
+						.ph20.mt20.text-center
+							h3.mt20.mb10.fw400 Button States
+							p.mb25
+								code .disabled .active
+							.element-groups-custom
+								div
+									.bs-component
+										button.btn.disabled.btn-light.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-default.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-primary.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-success.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-info.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-warning.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-danger.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-alert.btn-block(type='button') Disabled
+								div
+									.bs-component
+										button.btn.disabled.btn-system.btn-block(type='button') Disabled
+						.ph20.mt20.text-center
+							.element-groups-custom
+								.bs-component
+									button.btn.btn-hover.btn-light.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-default.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-primary.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-success.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-info.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-warning.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-danger.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-alert.btn-block(type='button') Hover
+								.bs-component
+									button.btn.btn-hover.btn-system.btn-block(type='button') Hover
+						.ph20.mt20.text-center
+							.element-groups-custom
+								.bs-component
+									button.btn.active.btn-light.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-default.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-primary.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-success.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-info.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-warning.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-danger.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-alert.btn-block(type='button') Active
+								.bs-component
+									button.btn.active.btn-system.btn-block(type='button') Active
+					// button sizes
+					div.mt70.text-center
+						h3.mt20.mb10.fw400 Button Sizes
+						p.mb25
+							code .btn-xs .btn-sm .btn-lg
+						.row.mt20.text-center.element-groups-custom
+
+							.bs-component
+								button.btn.btn-xs.btn-light.btn-block(type='button') Light
+
+							.bs-component
+								button.btn.btn-xs.btn-primary.btn-block(type='button') Primary
+
+							.bs-component
+								button.btn.btn-xs.btn-default.btn-block(type='button') Default
+
+							.bs-component
+								button.btn.btn-xs.btn-success.btn-block(type='button') Success
+
+							.bs-component
+								button.btn.btn-xs.btn-info.btn-block(type='button') Info
+
+							.bs-component
+								button.btn.btn-xs.btn-warning.btn-block(type='button') Warning
+
+							.bs-component
+								button.btn.btn-xs.btn-danger.btn-block(type='button') Danger
+
+							.bs-component
+								button.btn.btn-xs.btn-alert.btn-block(type='button') Alert
+
+							.bs-component
+								button.btn.btn-xs.btn-system.btn-block(type='button') System
+						.row.mt20.text-center.element-groups-custom
+
+							.bs-component
+								button.btn.btn-sm.btn-light.btn-block(type='button') Light
+
+							.bs-component
+								button.btn.btn-sm.btn-primary.btn-block(type='button') Primary
+
+							.bs-component
+								button.btn.btn-sm.btn-default.btn-block(type='button') Default
+
+							.bs-component
+								button.btn.btn-sm.btn-success.btn-block(type='button') Success
+
+							.bs-component
+								button.btn.btn-sm.btn-info.btn-block(type='button') Info
+
+							.bs-component
+								button.btn.btn-sm.btn-warning.btn-block(type='button') Warning
+
+							.bs-component
+								button.btn.btn-sm.btn-danger.btn-block(type='button') Danger
+
+							.bs-component
+								button.btn.btn-sm.btn-alert.btn-block(type='button') Alert
+
+							.bs-component
+								button.btn.btn-sm.btn-system.btn-block(type='button') System
+						.row.mt20.text-center.element-groups-custom
+
+							.bs-component
+								button.btn.btn-light.btn-block(type='button') Light
+
+							.bs-component
+								button.btn.btn-primary.btn-block(type='button') Primary
+
+							.bs-component
+								button.btn.btn-default.btn-block(type='button') Default
+
+							.bs-component
+								button.btn.btn-success.btn-block(type='button') Success
+
+							.bs-component
+								button.btn.btn-info.btn-block(type='button') Info
+
+							.bs-component
+								button.btn.btn-warning.btn-block(type='button') Warning
+
+							.bs-component
+								button.btn.btn-danger.btn-block(type='button') Danger
+
+							.bs-component
+								button.btn.btn-alert.btn-block(type='button') Alert
+
+							.bs-component
+								button.btn.btn-system.btn-block(type='button') System
+						// button options
+						.mb30.mt70.text-center
+							h3.mt20.mb10.fw400 Button Options
+							p.mb25
+								code .btn-rounded .btn-gradient
+						.row.mt20.text-center.element-groups-custom
+							.bs-component
+								button.btn.btn-rounded.btn-light.btn-block(type='button') Light
+
+							.bs-component
+								button.btn.btn-rounded.btn-primary.btn-block(type='button') Primary
+
+							.bs-component
+								button.btn.btn-rounded.btn-success.btn-block(type='button') Success
+
+							.bs-component
+								button.btn.btn-rounded.btn-info.btn-block(type='button') Info
+
+							.bs-component
+								button.btn.btn-rounded.btn-warning.btn-block(type='button') Warning
+
+							.bs-component
+								button.btn.btn-rounded.btn-danger.btn-block(type='button') Danger
+
+							.bs-component
+								button.btn.btn-rounded.btn-alert.btn-block(type='button') Alert
+
+							.bs-component
+								button.btn.btn-rounded.btn-system.btn-block(type='button') System
+						.row.mt20.text-center.element-groups-custom
+							.bs-component
+								button.btn.btn-light.btn-gradient.dark.btn-block(type='button') Light
+
+							.bs-component
+								button.btn.btn-primary.btn-gradient.dark.btn-block(type='button') Primary
+
+							.bs-component
+								button.btn.btn-success.btn-gradient.dark.btn-block(type='button') Success
+
+							.bs-component
+								button.btn.btn-info.btn-gradient.dark.btn-block(type='button') Info
+
+							.bs-component
+								button.btn.btn-warning.btn-gradient.dark.btn-block(type='button') Warning
+
+							.bs-component
+								button.btn.btn-danger.btn-gradient.dark.btn-block(type='button') Danger
+
+							.bs-component
+								button.btn.btn-alert.btn-gradient.dark.btn-block(type='button') Alert
+
+							.bs-component
+								button.btn.btn-system.btn-gradient.dark.btn-block(type='button') System
+					.mb30.mt70.demo-btn-dropdowns.text-center
+						h3.mt20.mb10.fw400 Button Dropdowns
+						p.mb25
+							code .dropdown-toggle
+						.row.mt20.text-center.element-groups-custom
+							.bs-component
+								.btn-group
+									button.btn.btn-light.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Light
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Primary
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-success.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Success
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-info.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Info
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-warning.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Warning
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-danger.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Danger
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-alert.dropdown-toggle(type='button', data-toggle='dropdown')
+										| Alert
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+							.bs-component
+								.btn-group
+									button.btn.btn-system.dropdown-toggle(type='button', data-toggle='dropdown')
+										| System
+										span.caret.ml5
+									ul.dropdown-menu(role='menu')
+										li
+											a(href='#') Action
+										li
+											a(href='#') Another action
+										li
+											a(href='#') Something else here
+										li.divider
+										li
+											a(href='#') Separated link
+				// content
+			// Start: Right Sidebar
+			aside#sidebar_right.nano.affix
+				// Start: Sidebar Right Content
+				.sidebar-right-content.nano-content
+					.tab-block.sidebar-block.br-n
+						ul.nav.nav-tabs.tabs-border.nav-justified.hidden
+							li.active
+								a(href='#sidebar-right-tab1', data-toggle='tab') Tab 1
+							li
+								a(href='#sidebar-right-tab2', data-toggle='tab') Tab 2
+							li
+								a(href='#sidebar-right-tab3', data-toggle='tab') Tab 3
+						.tab-content.br-n
+							#sidebar-right-tab1.tab-pane.active
+								h5.title-divider.text-muted.mb20
+									| Server Statistics
+									span.pull-right
+										| 2013
+										i.fa.fa-caret-down.ml5
+								.progress.mh5
+									.progress-bar.progress-bar-primary(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 44%')
+										span.fs11 DB Request
+								.progress.mh5
+									.progress-bar.progress-bar-info(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 84%')
+										span.fs11.text-left Server Load
+								.progress.mh5
+									.progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='45', aria-valuemin='0', aria-valuemax='100', style='width: 61%')
+										span.fs11.text-left Server Connections
+								h5.title-divider.text-muted.mt30.mb10 Traffic Margins
+								.row
+									.col-xs-5
+										h3.text-primary.mn.pl5 132
+									.col-xs-7.text-right
+										h3.text-success-dark.mn
+											i.fa.fa-caret-up
+											|  13.2%
+								h5.title-divider.text-muted.mt25.mb10 Database Request
+								.row
+									.col-xs-5
+										h3.text-primary.mn.pl5 212
+									.col-xs-7.text-right
+										h3.text-success-dark.mn
+											i.fa.fa-caret-up
+											|  25.6%
+								h5.title-divider.text-muted.mt25.mb10 Server Response
+								.row
+									.col-xs-5
+										h3.text-primary.mn.pl5 82.5
+									.col-xs-7.text-right
+										h3.text-danger.mn
+											i.fa.fa-caret-down
+											|  17.9%
+								h5.title-divider.text-muted.mt40.mb20
+									| Server Statistics
+									span.pull-right.text-primary.fw600 USA
+							#sidebar-right-tab2.tab-pane
+							#sidebar-right-tab3.tab-pane
+		style.
+			/* Demo Page Styles */
+			.hero-content .btn {
+				border-radius: 0 !important;
+				padding: 12px 0 !important;
+			}
+
+			.col-adjust-8 {
+				padding: 0 30px;
+			}
+
+			.col-adjust-8 > .row > div {
+				width: 11.1%;
+				padding-left: 7px;
+				padding-right: 7px;
+			}
+
+			.col-adjust-8 > .row > div > .btn {
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+
+			.col-adjust-8 > .row > div > .btn-group > .btn {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+
+			/* Responsive Demo Page Styles */
+			@media (max-width: 700px) {
+				.col-adjust-8 code {
+					display: none;
+				}
+
+				.col-adjust-8 > .row > div {
+					width: 50%;
+					margin-bottom: 10px;
+				}
+
+				.hero-content {
+					border-bottom: 0 !important;
+					padding-bottom: 0 !important;
+				}
+
+				.hero-content .col-adjust-8 h3,
+				.hero-content .col-adjust-8 > .row:first-child > div {
+					margin-bottom: 0px !important;
+				}
+
+				.col-adjust-8.demo-btn-groups > .row > div,
+				.col-adjust-8.demo-btn-dropdowns > .row > div,
+				.col-adjust-8.demo-btn-ladda > .row > div {
+					width: 33%;
+					margin-bottom: 10px;
+				}
+
+				.col-adjust-8.demo-btn-ladda > .row > div > .btn {
+					min-width: 100px;
+				}
+			}
+
+			/* Zocal Demo Page Styles*/
+			button.zocial {
+				margin: 6px;
+			}
+
+			/* Ladd Demo Page Styles*/
+			.ladda-button[data-loading] {
+				overflow: visible;
+			}
+
+			.ladda-button[data-style=contract][data-loading] {
+				width: 35px;
+			}
+		// core scripts
+		script(src='plugins/core.min.js')
+		// Theme Javascript
+		script(src='assets/js/utility/utility.js')
+		script(src='assets/js/demo/demo.js')
+		script(src='assets/js/main.js')
+		script(type='text/javascript').
+			jQuery(document).ready(function () {
+				"use strict";
+				// Init Theme Core
+				Core.init();
+				// Init Demo JS
+				Demo.init();
+				// Init Ladda Plugin on buttons
+				Ladda.bind('.ladda-button', {
+					timeout: 2000
+				});
+				// Bind progress buttons and simulate loading progress. Note: Button still requires ".ladda-button" class.
+				Ladda.bind('.progress-button', {
+					callback: function (instance) {
+						var progress = 0;
+						var interval = setInterval(function () {
+							progress = Math.min(progress + Math.random() * 0.1, 1);
+							instance.setProgress(progress);
+							if (progress === 1) {
+								instance.stop();
+								clearInterval(interval);
+							}
+						}, 200);
+					}
+				});
+			});
